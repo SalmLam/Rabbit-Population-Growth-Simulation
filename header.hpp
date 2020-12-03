@@ -1,7 +1,10 @@
 
 /* Number of years to be simulated*/
-const int year_max = 30;
+const int year_max = 5;
 
+/*Defining parameters to initialize the population*/
+const int initial_population = 2;
+const int initial_female = 1;
 
 typedef struct _ageCategory{
     int age_value;
@@ -9,12 +12,12 @@ typedef struct _ageCategory{
     double gender; //percentage of female
 } _ageCategory;
 
-typedef struct _statistiques{
-    int initial_population;
+typedef struct _statistic{
     int total_deaths;
     int total_births;
-    int total_female; 
-} _statistiques;
+    int total_female;
+    int total_population;
+} _statistic;
 
 
 
@@ -38,9 +41,8 @@ double uniform(double a, double b, double x);
 /* Functions*/
 
 int Death (_ageCategory (& population)[]);
-int Birth (_ageCategory (& population)[]);
+int Birth (_ageCategory (& population)[],_statistic & statistic);
 void Gender (_ageCategory (& population)[]);
-int Update_total_individuals (_ageCategory (& population)[]);
-
-
+void Update_total_individuals (_ageCategory (& population)[], _statistic & statistic);
+void Update_total_female (_ageCategory (& population)[], _statistic & statistic);
 

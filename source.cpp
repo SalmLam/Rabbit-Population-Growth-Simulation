@@ -38,7 +38,7 @@ int Death (_ageCategory (& population)[]) {
  * *********************************************************************************************************************
  **/
 
-int Birth (_ageCategory (& population)[]) {
+int Birth (_ageCategory (& population)[], _statistic & statistic) {
     int total_females = 0;
     int total_litters = 0;
     int total_babies = 0;
@@ -65,6 +65,9 @@ int Birth (_ageCategory (& population)[]) {
             }
     }
 
+    /*Update annual birth statistics*/
+    statistic.total_births = total_babies;
+    
     return total_babies;
 }
 
@@ -89,25 +92,67 @@ void Gender(_ageCategory (& population)[]) {
                 population[i].gender = 0.5 + (random / 100);
             }
     }
+
 }
 
 /**
  * ********************************************************************************************************************
- * * * Gender  : Updates the total number of individuals in the population each year
+ * * * Update_total_individuals  : Updates the total number of individuals in the population each year
  * * * Input   : a table of size 16 where each cell is of type struct _Age and the computed number of births 
  * * * Output  : the total number of individualss 
  * *********************************************************************************************************************
  **/
 
-int Update_total_individuals (_ageCategory (& population)[], _statistiques & statistiques) {
+void Update_total_individuals (_ageCategory (& population)[], _statistic & statistic) {
 
     /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
-    statistiques.total_deaths += population[size - 1].nb_individuals;
+    statistic.total_deaths += population[size - 1].nb_individuals;
 
-    /** Updates the nuber of individuals of each category**/
+    /** Updates the number of individuals of each category**/
     for (int i = 0; i < size - 1; i++) {
         population[size - i].nb_individuals = population[size - i -1].nb_individuals;
     }
 
-    population[0].nb_individuals = statistiques.total_births;
+    population[0].nb_individuals = statistic.total_births;
+
+
+    /*update annual gender statistics*/
+    int total_female = 0;
+    for (int i = 0; i < size ; i++) {
+        total_female += population[i].nb_individuals * population[i].gender;
+    } 
+    statistic.total_female = total_female;
+
 }
+
+/**
+ * ********************************************************************************************************************
+ * * * Update_total_female  : Updates the total number of females in the population each year
+ * * * Input   : a table of size 16 where each cell is of type struct _ageCategory 
+ * * *         : a table size equal to the number of years studied where each cell is of type _statistic  
+ * * * Output  : the total number of individualss 
+ * *********************************************************************************************************************
+ **/
+
+void Update_total_female (_ageCategory (& population)[], _statistic & statistic) {
+
+    /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
+    statistic.total_deaths += population[size - 1].nb_individuals;
+
+    /** Updates the number of individuals of each category**/
+    for (int i = 0; i < size - 1; i++) {
+        population[size - i].nb_individuals = population[size - i -1].nb_individuals;
+    }
+
+    population[0].nb_individuals = statistic.total_births;
+
+
+    /*update annual gender statistics*/
+    int total_female = 0;
+    for (int i = 0; i < size ; i++) {
+        total_female += population[i].nb_individuals * population[i].gender;
+    } 
+    statistic.total_female = total_female;
+
+}
+

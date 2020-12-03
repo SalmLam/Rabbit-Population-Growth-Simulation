@@ -7,24 +7,32 @@
 int main() {
 
     /**
-     * Initilize the population
+     * Arrays needed to keep track of the evlolution of the population
      * */
 
-    struct _ageCategory * population = (_ageCategory *) malloc (16 * sizeof(_ageCategory));
-    struct _statistiques * statistiques = (_statistiques *) malloc (16 * sizeof(_statistiques));
+    struct _ageCategory * population = (_ageCategory *) malloc (size * sizeof(_ageCategory));
+    struct _statistiques * statistiques = (_statistiques *) malloc (year_max * sizeof(_statistiques));
 
 
     /**
-     * Initilize the population
+     * Initilizing the population
      * */
      
     population[0].age_value = 0;
-    population[0].nb_individuals = 2;
-    population[0].gender = 0.5;
+    population[0].nb_individuals = initial_population;
+    population[0].gender = initial_female / initial_population;
 
-    for (int i = 0; i < year_max; i ++) {
-
+    for (int i = 1; i < size; i ++) {
+        population[i].age_value = i;
+        population[i].nb_individuals = 0;
+        population[i].gender = 0;
     }
-    
 
+    /**
+     * Simulating the evlolution of the population
+     * */
+    
+    for (int i = 0; i < year_max; i++) {
+        statistiques[i].
+    }
 }
