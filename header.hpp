@@ -1,3 +1,4 @@
+#include <iostream>
 
 /* Number of years to be simulated*/
 const int year_max = 5;
@@ -40,9 +41,9 @@ double uniform(double a, double b, double x);
 
 /* Functions*/
 
-void Death (_ageCategory (& population)[], _statistic & statistic);
-void Birth (_ageCategory (& population)[],_statistic & statistic);
-void Gender (_ageCategory (& population)[]);
-void Update_total_individuals (_ageCategory (& population)[], _statistic & statistic);
-void Update_total_female (_ageCategory (& population)[], _statistic & statistic);
+void Death (_ageCategory * population, _statistic & statistic);
+void Birth (_ageCategory * population,_statistic & statistic);
+void Gender (_ageCategory * population);
+void Update_total_individuals (_ageCategory * population, _statistic & statistic);
+void Update_total_female (_ageCategory * population, _statistic & statistic);
 

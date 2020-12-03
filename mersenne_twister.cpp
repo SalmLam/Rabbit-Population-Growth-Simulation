@@ -45,6 +45,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+#include "header.hpp"
+
 /* Period parameters */  
 #define N 624
 #define M 397
@@ -540,64 +542,4 @@ void box_muller (int n, double mu, double sigma) {
 
     //print_histogram(7, test6bins);
 
-}
-/* These real versions are due to Isaku Wada, 2002/01/09 added */
-
-int main(void)
-{
-     int i;
-     unsigned long init[4] = {0x123, 0x234, 0x345, 0x456}, length = 4;
-    init_by_array(init, length);
-    printf("1000 outputs of genrand_int32()\n");
-    
-    
-    
-    for (i=0; i<1000; i++) {
-      printf("%10.8f ", genrand_int32( ));
-      //if (i%5==4) 
-      printf("\n");
-    }
-
-
-
-    printf("\n1000 outputs of genrand_real2()\n");
-    for (i=0; i<1000; i++) {
-      //printf("%10.8f ", genrand_real2());
-      /*Question 2 */
-      printf("%10.8f ", uniform(5.0, 6.0, genrand_real2()));
-      if (i%5==4) printf("\n");
-    }
-
-
-      /*Question 3.a*/
-      double* percentage_1000 = three_classes_discrete_distribution(1000000);
-      double* percentage_1000000 = three_classes_discrete_distribution(1000000);
-
-
-      /*Question 3.b*/
-      int individuals_per_class[10];
-      individuals_per_class[0] = 0;
-      individuals_per_class[1] = 55;
-      individuals_per_class[2] = 44;
-      individuals_per_class[3] = 63;
-      individuals_per_class[4] = 12;
-      individuals_per_class[5] = 5;
-      individuals_per_class[6] = 29;
-      individuals_per_class[7] = 30;
-      individuals_per_class[8] = 74;
-      individuals_per_class[9] = 15;
-      generic_discrete_distribution(10 ,individuals_per_class);
-    
-      double array[4] = {0.76, 0.78, 2.6, 5};
-      int c = binary_search(0, 3, 5.0, array);
-      printf("-- %d --", c);
-      
-      /*Question 4*/
-       Test_negExp(10, 1000000);
-       int * test2bins= biased_dice(10, 500);
-
-     /*Question 5*/
-      box_muller_centered_reduced(1000);
-      
-    
 }

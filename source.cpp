@@ -8,7 +8,7 @@
  * *********************************************************************************************************************
  **/
 
-void Death (_ageCategory (& population)[], _statistic & statistic) {
+void Death (_ageCategory * population, _statistic & statistic) {
     int total = 0;
     int category_total = 0;
     for (int i = 0; i < size; i++) {
@@ -24,6 +24,7 @@ void Death (_ageCategory (& population)[], _statistic & statistic) {
         } 
 
         total += category_total;
+        std::cout << i << " : " << total << std::endl;
     }
 
     /*Update annual death statistics*/
@@ -40,7 +41,7 @@ void Death (_ageCategory (& population)[], _statistic & statistic) {
  * *********************************************************************************************************************
  **/
 
-void Birth (_ageCategory (& population)[], _statistic & statistic) {
+void Birth (_ageCategory * population, _statistic & statistic) {
     int total_females = 0;
     int total_litters = 0;
     int total_babies = 0;
@@ -80,7 +81,7 @@ void Birth (_ageCategory (& population)[], _statistic & statistic) {
  * *********************************************************************************************************************
  **/
 
-void Gender(_ageCategory (& population)[]) {
+void Gender(_ageCategory * population) {
     double random = 0.0;
     for (int i = 0; i < size; i++) {
         /** generates a random number between 1 and 20**/
@@ -104,7 +105,7 @@ void Gender(_ageCategory (& population)[]) {
  * *********************************************************************************************************************
  **/
 
-void Update_total_individuals (_ageCategory (& population)[], _statistic & statistic) {
+void Update_total_individuals (_ageCategory * population, _statistic & statistic) {
 
     /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
     statistic.total_deaths += population[size - 1].nb_individuals;
@@ -127,7 +128,7 @@ void Update_total_individuals (_ageCategory (& population)[], _statistic & stati
  * *********************************************************************************************************************
  **/
 
-void Update_total_female (_ageCategory (& population)[], _statistic & statistic) {
+void Update_total_female (_ageCategory * population, _statistic & statistic) {
 
     int total_female = 0;
     for (int i = 0; i < size ; i++) {
