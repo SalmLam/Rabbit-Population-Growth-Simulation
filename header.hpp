@@ -1,11 +1,15 @@
 #include <iostream>
+#include <math.h>
+#include <vector>
+
+using namespace::std;
 
 /* Number of years to be simulated*/
-const int year_max = 5;
+const int year_max = 1;
 
 /*Defining parameters to initialize the population*/
-const int initial_population = 2;
-const int initial_female = 1;
+const int initial_population = 20;
+const int initial_female = 10;
 
 typedef struct _ageCategory{
     int age_value;
@@ -41,9 +45,9 @@ double uniform(double a, double b, double x);
 
 /* Functions*/
 
-void Death (_ageCategory * population, _statistic & statistic);
-void Birth (_ageCategory * population,_statistic & statistic);
-void Gender (_ageCategory * population);
-void Update_total_individuals (_ageCategory * population, _statistic & statistic);
-void Update_total_female (_ageCategory * population, _statistic & statistic);
+void Death (vector<_ageCategory> & population, _statistic & statistic);
+void Birth (vector<_ageCategory> & population,_statistic & statistic);
+void Gender (vector<_ageCategory> & population);
+void Update_total_individuals (vector<_ageCategory> & population, _statistic & statistic);
+void Update_total_female (vector<_ageCategory> & population, _statistic & statistic);
 
