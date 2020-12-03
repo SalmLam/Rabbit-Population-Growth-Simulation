@@ -1,4 +1,7 @@
 
+/* Number of years to be simulated*/
+const int year_max = 30;
+
 
 typedef struct _ageCategory{
     int age_value;
@@ -30,9 +33,14 @@ unsigned long genrand_int32();
 double uniform(double a, double b, double x);
 
 
+
+
+/* Functions*/
+
 int Death (_ageCategory (& population)[]);
 int Birth (_ageCategory (& population)[]);
 void Gender (_ageCategory (& population)[]);
-int update_total_individuals (_ageCategory (& population)[]);
+int Update_total_individuals (_ageCategory (& population)[]);
+
 
 

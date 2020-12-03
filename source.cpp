@@ -99,7 +99,7 @@ void Gender(_ageCategory (& population)[]) {
  * *********************************************************************************************************************
  **/
 
-int update_total_individuals (_ageCategory (& population)[], _statistiques & statistiques) {
+int Update_total_individuals (_ageCategory (& population)[], _statistiques & statistiques) {
 
     /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
     statistiques.total_deaths += population[size - 1].nb_individuals;

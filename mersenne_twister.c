@@ -518,7 +518,7 @@ void box_muller (int n, double mu, double sigma) {
         for (int j = 0; j < 2; j++) {
             random = x[j];
             mean += random;
-            if (random > my - sigma && random < mu + sigma) p1 ++;
+            if (random > mu - sigma && random < mu + sigma) p1 ++;
             if (random > 0.3) index = 6;
             else index = n_search(7, x[j], binary_search_array);
             test6bins[index] ++;
