@@ -34,9 +34,12 @@ int main() {
     
     for (int i = 0; i < year_max; i++) {
         Death (population , statistic[i]);
-        //Birth (population, statistic[i]);
-        //Update_total_individuals (population, statistic[i]);
-        //Gender(population);
-        //Update_total_female (population, statistic[i]);
+        Birth (population, statistic[i]);
+        Update_total_individuals (population, statistic[i]);
+        Gender(population);
+        Update_total_female (population, statistic[i]);
     }
+
+    free(population);
+    free(statistic);
 }
