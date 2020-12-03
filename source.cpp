@@ -8,7 +8,7 @@
  * *********************************************************************************************************************
  **/
 
-int Death (_ageCategory (& population)[]) {
+void Death (_ageCategory (& population)[], _statistic & statistic) {
     int total = 0;
     int category_total = 0;
     for (int i = 0; i < size; i++) {
@@ -26,7 +26,9 @@ int Death (_ageCategory (& population)[]) {
         total += category_total;
     }
 
-    return total;
+    /*Update annual death statistics*/
+    statistic.total_deaths = total;
+
 } 
 
 /**
@@ -38,7 +40,7 @@ int Death (_ageCategory (& population)[]) {
  * *********************************************************************************************************************
  **/
 
-int Birth (_ageCategory (& population)[], _statistic & statistic) {
+void Birth (_ageCategory (& population)[], _statistic & statistic) {
     int total_females = 0;
     int total_litters = 0;
     int total_babies = 0;
@@ -68,7 +70,6 @@ int Birth (_ageCategory (& population)[], _statistic & statistic) {
     /*Update annual birth statistics*/
     statistic.total_births = total_babies;
     
-    return total_babies;
 }
 
 /**
@@ -115,14 +116,6 @@ void Update_total_individuals (_ageCategory (& population)[], _statistic & stati
 
     population[0].nb_individuals = statistic.total_births;
 
-
-    /*update annual gender statistics*/
-    int total_female = 0;
-    for (int i = 0; i < size ; i++) {
-        total_female += population[i].nb_individuals * population[i].gender;
-    } 
-    statistic.total_female = total_female;
-
 }
 
 /**
@@ -136,18 +129,6 @@ void Update_total_individuals (_ageCategory (& population)[], _statistic & stati
 
 void Update_total_female (_ageCategory (& population)[], _statistic & statistic) {
 
-    /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
-    statistic.total_deaths += population[size - 1].nb_individuals;
-
-    /** Updates the number of individuals of each category**/
-    for (int i = 0; i < size - 1; i++) {
-        population[size - i].nb_individuals = population[size - i -1].nb_individuals;
-    }
-
-    population[0].nb_individuals = statistic.total_births;
-
-
-    /*update annual gender statistics*/
     int total_female = 0;
     for (int i = 0; i < size ; i++) {
         total_female += population[i].nb_individuals * population[i].gender;

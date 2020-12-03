@@ -11,7 +11,7 @@ int main() {
      * */
 
     struct _ageCategory * population = (_ageCategory *) malloc (size * sizeof(_ageCategory));
-    struct _statistiques * statistiques = (_statistiques *) malloc (year_max * sizeof(_statistiques));
+    struct _statistic * statistic = (_statistic *) malloc (year_max * sizeof(_statistic));
 
 
     /**
@@ -33,6 +33,6 @@ int main() {
      * */
     
     for (int i = 0; i < year_max; i++) {
-        statistiques[i].
+        Death( (* population) , statistic[i]);
     }
 }

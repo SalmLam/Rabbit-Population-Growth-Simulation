@@ -40,8 +40,8 @@ double uniform(double a, double b, double x);
 
 /* Functions*/
 
-int Death (_ageCategory (& population)[]);
-int Birth (_ageCategory (& population)[],_statistic & statistic);
+void Death (_ageCategory (& population)[], _statistic & statistic);
+void Birth (_ageCategory (& population)[],_statistic & statistic);
 void Gender (_ageCategory (& population)[]);
 void Update_total_individuals (_ageCategory (& population)[], _statistic & statistic);
 void Update_total_female (_ageCategory (& population)[], _statistic & statistic);
