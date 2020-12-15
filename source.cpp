@@ -13,6 +13,7 @@ void Death (vector<_ageCategory> & population, _statistic & statistic) {
     int category_total = 0;
     for (int i = 0; i < size; i++) {
         category_total = 0;
+        //std::cout << "NB INDIV" << population[i].nb_individuals << std::endl;
         if (population[i].age_value < 1) {
             category_total = population[i].nb_individuals * 0.65;
             population[i].nb_individuals -= category_total;
@@ -25,7 +26,7 @@ void Death (vector<_ageCategory> & population, _statistic & statistic) {
         } 
 
         total += category_total;
-        std::cout << i << " : " << total << std::endl;
+        //std::cout << i << " : " << category_total << std::endl;
     }
 
     /*Update annual death statistics*/
@@ -67,9 +68,13 @@ void Birth (vector<_ageCategory> & population, _statistic & statistic) {
             for (int j = 0; j < 4; j++) {
                 total_babies += total_litters * babies_probabilities[j] * (j + 3);
             }
+
+        
     }
 
     /*Update annual birth statistics*/
+
+    //std::cout << " total babies " << total_babies << std::endl;
     statistic.total_births = total_babies;
     
 }
@@ -112,11 +117,15 @@ void Update_total_individuals (vector<_ageCategory> & population, _statistic & s
     statistic.total_deaths += population[size - 1].nb_individuals;
 
     /** Updates the number of individuals of each category**/
-    for (int i = 0; i < size - 1; i++) {
+    for (int i = 1; i < size - 1; i++) {
         population[size - i].nb_individuals = population[size - i -1].nb_individuals;
     }
 
     population[0].nb_individuals = statistic.total_births;
+
+    for (int i = 0; i < size; i++) {
+        statistic.total_population += population[i].nb_individuals;
+    }
 
 }
 
@@ -125,7 +134,7 @@ void Update_total_individuals (vector<_ageCategory> & population, _statistic & s
  * * * Update_total_female  : Updates the total number of females in the population each year
  * * * Input   : a table of size 16 where each cell is of type struct _ageCategory 
  * * *         : a table size equal to the number of years studied where each cell is of type _statistic  
- * * * Output  : the total number of individualss 
+ * * * Output  : the total number of individuals
  * *********************************************************************************************************************
  **/
 
@@ -139,3 +148,105 @@ void Update_total_female (vector<_ageCategory> & population, _statistic & statis
 
 }
 
+
+
+/**
+ * ********************************************************************************************************************
+ * * * print_statistics  : Prints statistics about the whole population each year
+ * * * Input   : a table size equal to the number of years studied where each cell is of type _statistic  
+ * * * Output  : void
+ * *********************************************************************************************************************
+ **/
+
+void print_statistics (_statistic & statistic) {
+    std::cout << "///////////////////////////STATISTIC///////////////////////////////" << std::endl;
+    std::cout << "**************************************" << std::endl;
+    std::cout << "TOTAL DEATHS =================> " << statistic.total_deaths << std::endl;
+    std::cout << "TOTAL BIRTHS =================> " << statistic.total_births << std::endl;
+    std::cout << "TOTAL FEMALE =================> " << statistic.total_female << std::endl;
+    std::cout << "TOTAL POPULATION==============> " << statistic.total_population << std::endl;
+    std::cout << "**************************************" << std::endl;
+}
+
+/**
+ * ********************************************************************************************************************
+ * * * print_population  : Prints information about the population for each age category
+ * * * Input   : a table of size 16 where each cell is of type struct _ageCategory 
+ * * * Output  : void
+ * *********************************************************************************************************************
+ **/
+
+void print_population (vector<_ageCategory> & population) {
+    std::cout << "POPULATION" << std::endl;
+    for (int i = 0; i < size; i++) {
+        std::cout << "**************************************" << std::endl;
+        std::cout << "AGE VALUE=====================> " << population[i].age_value << std::endl;
+        std::cout << "NB INIDIVIDUALS===============> " << population[i].nb_individuals << std::endl;
+        std::cout << "PERCENTAGE FEMALE ============> " << population[i].gender << std::endl;
+        std::cout << "**************************************" << std::endl;
+        
+    
+    }
+    
+
+}
+
+
+/**
+ * ********************************************************************************************************************
+ * * * print_population  : Saves the statistics of each year in a text file 
+ * * * Input   : a table size equal to the number of years studied where each cell is of type _statistic  
+ * * * Output  : void
+ * *********************************************************************************************************************
+ **/
+
+void save_statistics (_statistic & statistic) {
+    std::fstream file("statistics.txt", ios::app);
+    file << statistic.total_births << " ";
+    file << statistic.total_deaths << " ";
+    file << statistic.total_female << " ";
+    file << statistic.total_population << " ";
+    file << std::endl;
+    file.flush();
+    file.close();
+
+}
+
+/**
+ * ********************************************************************************************************************
+ * * * save_nb_individuals_category : Saves the number of individuals per age category in a text file 
+ * * * Input   : a table of size 16 where each cell is of type struct _ageCategory   
+ * * * Output  : void
+ * *********************************************************************************************************************
+ **/
+
+void save_nb_individuals_category (vector<_ageCategory> & population) {
+    std::fstream file("nb_individuals_category.txt", ios::app);
+    for (int i = 0; i < size; i ++) {
+        file << population[i].nb_individuals << " ";
+    }
+    file << std::endl;
+    file.flush();
+    file.close();
+
+}
+
+
+/**
+ * ********************************************************************************************************************
+ * * * save_gender_category : Saves the percentage of females per age category in a text file 
+ * * * Input   : a table of size 16 where each cell is of type struct _ageCategory   
+ * * * Output  : void
+ * *********************************************************************************************************************
+ **/
+
+void save_gender_category (vector<_ageCategory> & population) {
+    std::fstream file("gender_category.txt", ios::app);
+    for (int i = 0; i < size; i ++) {
+        file << population[i].gender << " ";
+    }
+    file << std::endl;
+    file.flush();
+    file.close();
+
+}

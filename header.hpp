@@ -1,11 +1,13 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include <fstream>
+#include <sstream>
 
 using namespace::std;
 
 /* Number of years to be simulated*/
-const int year_max = 1;
+const int year_max = 20;
 
 /*Defining parameters to initialize the population*/
 const int initial_population = 20;
@@ -50,4 +52,8 @@ void Birth (vector<_ageCategory> & population,_statistic & statistic);
 void Gender (vector<_ageCategory> & population);
 void Update_total_individuals (vector<_ageCategory> & population, _statistic & statistic);
 void Update_total_female (vector<_ageCategory> & population, _statistic & statistic);
-
+void print_statistics (_statistic & statistic);
+void print_population (vector<_ageCategory> & population);
+void save_statistics (_statistic & statistic);
+void save_nb_individuals_category (vector<_ageCategory> & population);
+void save_gender_category (vector<_ageCategory> & population);
