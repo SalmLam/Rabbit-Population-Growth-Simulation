@@ -59,6 +59,4 @@ int main() {
         save_gender_category(population);
     }
 
-    //free(population);
-    //free(statistic);
 }

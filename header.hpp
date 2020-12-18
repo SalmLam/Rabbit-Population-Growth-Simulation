@@ -9,14 +9,10 @@ using namespace::std;
 /* Number of years to be simulated*/
 const int year_max = 20;
 
-/*Defining parameters to initialize the population*/
-const int initial_population = 2;
-const int initial_female = 1;
-
 typedef struct _ageCategory{
     int age_value;
     int nb_individuals;
-    double gender; //percentage of female
+    double gender;          // Percentage of female 
 } _ageCategory;
 
 typedef struct _statistic{
@@ -35,7 +31,7 @@ const int sizeP = 16;
 const double litters_probabilities[] = {0.12, 0.25, 0.25, 0.25, 0.13};
 
 /** probabilities of the number of babies beeing 3, 4, 5 and 6 per litter **/
-const double babies_probabilities[] = {0.25, 0.25, 0.25, 0.25};
+const double babies_probabilities[] = {0.1, 0.1, 0.4, 0.4};
 
 /** functionns needed in randomization**/
 double genrand_real1(void);

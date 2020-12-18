@@ -55,7 +55,7 @@ void Birth (vector<_ageCategory> & population, _statistic & statistic) {
 
         /** Computes the number of litters in the current year **/
         for (int j = 0; j < 5; j++) {
-            total_litters += total_females * litters_probabilities[j] * (j + 4); //************************ we forgot to multiply by j+4
+            total_litters += total_females * litters_probabilities[j] * (j + 4);
         }
 
 
@@ -104,14 +104,12 @@ void Gender(vector<_ageCategory> & population) {
 
 void Update_total_individuals (vector<_ageCategory> & population, _statistic & statistic) {
 
-    //statistic.total_population = 0; *****************
-
     /** update the number of deaths by adding the old inviduals that will die (> 15 yo) **/
     statistic.total_deaths += population[sizeP - 1].nb_individuals;
 
     /** Updates the number of individuals of each category**/
     for (int i = 0; i < sizeP - 1; i++) {
-        population[sizeP - i - 1].nb_individuals = population[sizeP - i - 2].nb_individuals; //********** pay attention to it: sizeP-i-1 et nn pas sizeP - i
+        population[sizeP - i - 1].nb_individuals = population[sizeP - i - 2].nb_individuals; 
     }
 
     population[0].nb_individuals = statistic.total_births;
